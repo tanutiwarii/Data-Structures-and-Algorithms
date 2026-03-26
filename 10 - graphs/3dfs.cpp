@@ -19,11 +19,22 @@ public:
     l[u].push_back(v);
     }
 
-    void dfs(int u, vector<int> &visited){
+    void dfsHelper(int u, vector<bool> &visited){
         cout<<u<<" ";
         visited[u] = true;
 
-        
+        for(int v : l[u]){
+            if(!visited[v]){
+                dfsHelper(v, visited);
+            }
+        }
+    }
+    void dfs(){
+        int src = 0;
+        vector<bool> visited(V, false);
+
+        dfsHelper(src,visited);
+        cout<<endl;
     }
 };
 
@@ -33,7 +44,6 @@ int main(){
     g.addEdge(0,1);
     g.addEdge(1,2);
     g.addEdge(1,3);
-    g.addEdge(2,3);
     g.addEdge(2,4);
 
     g.dfs();
