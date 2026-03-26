@@ -16,7 +16,8 @@ public:
     }
 
     void addEdge(int u, int v){
-    l[u].push_back(v);
+        l[u].push_back(v);
+        l[v].push_back(u);
     }
 
     void dfsHelper(int u, vector<bool> &visited){
